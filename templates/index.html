@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MCP-Server</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+      body {
+          background: transparent;
+      }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>MCP-Server</h1>
+    <p>Official MCP-Server add-on for OpenRemote</p>
+    <a href="https://docs.openremote.io/" target="_blank">Documentation</a>
+    <a href="https://github.com/openremote/service-mcp-server" target="_blank">Github</a>
+    <hr />
+    <h2>Setup MCP client</h2>
+    <p>Connect to the MCP server using the configuration below:</p>
+  <pre>
+    <code>{
+  "openremote": {
+    "transport": "streamable_http",
+    "url": {{ app_homepage_url }}mcp"
+  }
+}</code></pre>
+    <p>Use the official OpenRemote <a href="https://github.com/openremote/service-mcp-client" target="_blank">MCP client</a> to use AI directly inside your OpenRemote instance!</p>
+    <hr />
+    <h2>Available Tools</h2>
+    <p>List of the tools the AI can use using MCP. Some are auto generated based on the Asset models</p>
+      {% for tool_name, tool in tools.items() %}
+        <details>
+          <summary>
+            <b>{{ tool_name }}</b>
+          </summary>
+          <h5>Description</h5>
+          <p>{{ tool.description }}</p>
+          <br />
+          <h5>Parameters</h5>
+          <pre><code>{{ json.dumps(tool.parameters, indent=2) }}</code></pre>
+        </details>
+      {% endfor %}
+  </div>
+</body>
+</html>
